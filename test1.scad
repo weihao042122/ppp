@@ -15,9 +15,9 @@ module power_rod() {
     rod_r = ROD_R;
 
     fixingRod_high = 25;
-    fixingRod_r = 3;
+    fixingRod_r = 3.5;
     nut_high = 2;   //螺母
-    nut_r = 1.5;    //螺母
+    nut_r = 1.8;    //螺母
 
     // fp for fool-proofing
     fp_size_l = 1.5;
@@ -83,51 +83,65 @@ module Groove_hole(r1, thickness, need_cube = 1) {
     cylinder(r=r1, h=10,$fn=200);
 }
 //Groove
-module Groove_body() {
+module Groove_body(r, t) {
     rotate([90, 0, 0]) /*difference()*/ {
-        // cylinder(r=ROD_R+THICKNESS, h=TAIL_WIDTH,$fn=200, center=true);
-        cube(size=[ROD_R*2+THICKNESS, ROD_R*2+THICKNESS, TAIL_WIDTH], center=true);
-        // translate([0, 0, -10/2]) Groove_hole(ROD_R*1.05, THICKNESS);
-
-        translate([-(ROD_R*2+THICKNESS), (ROD_R*+THICKNESS/2), -TAIL_WIDTH/2])
-        cube(size=[ROD_R*2+THICKNESS, (ROD_R*2+THICKNESS)/3, TAIL_WIDTH]);
+        // cylinder(r=r+t, h=TAIL_WIDTH,$fn=200, center=true);
+        cube(size=[r*2+t, r*2+t, TAIL_WIDTH], center=true);
+        translate([-(r*2+t), (r/2), -TAIL_WIDTH/2])
+            cube(size=[r*2+t, (r*2+t)/3, TAIL_WIDTH]);
     }
 }
-module tail() {
+module Lib2() {
+    difference() {
+        translate([-(ROD_R*2+THICKNESS)*1.01, -TAIL_WIDTH/2, THICKNESS/2 ])
+            cube(size=[ROD_R*2+THICKNESS+ROD_R, TAIL_WIDTH, (ROD_R*2+THICKNESS)/3]);
+        translate([-(ROD_R*2+THICKNESS)*1.02, -TAIL_WIDTH/2*1.01, 0])
+            cube(size=[ROD_R+THICKNESS*1.05, TAIL_WIDTH*1.02, (ROD_R*2+THICKNESS)*2/5]);
+        rotate([90, 0, 0]) translate([0, 0, -TAIL_WIDTH]) Groove_hole(ROD_R*1.001, THICKNESS, 0);
+    }
+}
+module half_tail() {
     difference()
     {
-        translate([0, 0, ROD_R+(ROD_R+THICKNESS)]) {
-            // #cube(size=[PR_OFFSET_Y+ROD_R, TAIL_WIDTH, THICKNESS]);
-            translate([PR_OFFSET_Y-THICKNESS+ROD_R, ROD_R+THICKNESS, -THICKNESS/2]) {
-                Groove_body();
+        translate([0, TAIL_WIDTH, ROD_R+(ROD_R+THICKNESS)]) {
+            translate([PR_OFFSET_Y-THICKNESS+ROD_R, -ROD_R-THICKNESS-TAIL_WIDTH, -THICKNESS/2]) {
+                Groove_body(ROD_R, THICKNESS);
             };
 
             //tail_wind
             translate([0, -TAIL_WIDTH, -(ROD_R+(ROD_R+THICKNESS))]) {
                 zRotate = atan2(TAIL_WIDTH, PR_OFFSET_Y+ROD_R);
                 yRotate = atan2(ROD_R+(ROD_R+THICKNESS), PR_OFFSET_Y+ROD_R);
-                rotate([0, -yRotate, zRotate]) {
+                rotate([0, -yRotate, -zRotate]) {
                     cube(size=[PR_OFFSET_Y+ROD_R, TAIL_WIDTH, THICKNESS]);
                 }
             }    
         };
-
+        
         translate([PR_OFFSET_Y-THICKNESS+ROD_R, 10/2, ROD_R+(ROD_R+THICKNESS/2)]) {
             rotate([90, 0, 0]) Groove_hole(ROD_R*1.001, THICKNESS);    
-        }    
+        }
+        translate([PR_OFFSET_Y-THICKNESS+ROD_R, +ROD_R+THICKNESS-TAIL_WIDTH, ROD_R+(ROD_R+THICKNESS/2)])
+            Lib2();
+
     }
 }
 
-tail();
-// Groove_body() ;
-// # translate([0, 10/2,0]) rotate([90, 0, 0]) {
-//     Groove_hole(ROD_R*1.001, THICKNESS, 0);
+// half_tail();
+// translate([PR_OFFSET_Y-THICKNESS+ROD_R, +ROD_R+THICKNESS-TAIL_WIDTH, ROD_R+(ROD_R+THICKNESS/2)+THICKNESS])
+//     Lib2();
+
+// difference(){
+//     Groove_body(ROD_R, THICKNESS);
+//     translate([0, TAIL_WIDTH, 0]) rotate([90, 0, 0]) Groove_hole(ROD_R*1.001, THICKNESS); 
+//     Lib2();
 // }
- 
-
-
+// difference(){
+//     translate([0, 0, 1]) Lib2();
+//     cylinder(r=1.4, h=10, $fn=200, center=true);
+// }
 ///////////////////////////////////////////////////////////
-if (0) {
+if (1) {
     translate([-PR_OFFSET_Y, -40, ROD_R+(ROD_R+THICKNESS*0.5)]) {
             rotate([-90, 0, 0]) {
             power_rod();
@@ -145,4 +159,7 @@ if (0) {
             wind_rod();
         }
     }
+
+    half_tail();
+    mirror([1, 0, 0])  half_tail();
 }
