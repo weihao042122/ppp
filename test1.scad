@@ -109,6 +109,13 @@ module Lib2() {
         rotate([90, 0, 0]) translate([0, 0, -TAIL_WIDTH]) Groove_hole(ROD_R*1.001, THICKNESS, 0);
     }
 }
+module prism(x, y, z){
+    polyhedron(
+        points=[[0,0,0], [x,0,0], [0,y,0], [0,0,z], [x,0,z], [0,y,z]],
+        faces=[[5,4,1,2],[5,2,0,3],[0,1,4,3],[3,4,5],[0,2,1]]
+        );
+} 
+
 module half_tail() {
     difference()
     {
@@ -136,7 +143,28 @@ module half_tail() {
 
         // nut hole
         translate([PR_OFFSET_Y-2*ROD_R-THICKNESS/2, -TAIL_WIDTH-TAIL_WIDTH/2-SPACE, ROD_R+(ROD_R+THICKNESS)+1.8/2]) cylinder(r=NUT_R, h=1.8, $fn=200, center=true);
+    }
 
+    difference(){
+        translate([0, -TAIL_WIDTH, -0.6]){
+            cube(size=[TAIL_WIDTH*0.6, TAIL_WIDTH, THICKNESS+0.6]);
+            translate([0.15, TAIL_WIDTH, 0])
+            cube(size=[TAIL_WIDTH*0.6, TAIL_WIDTH*2, 0.6-0.2]);
+        }
+
+        rotate([180, 180, 0])
+        translate([-0.15-TAIL_WIDTH*0.6, -TAIL_WIDTH*2, -0.6-0.1]) { 
+            prism(1.2,2*TAIL_WIDTH,0.6);
+        }
+        rotate([180, 0, 0])
+        translate([0, -TAIL_WIDTH*2, 0]) { 
+            prism(1.2,3.5,0.8);
+        }
+
+        rotate([0, 0, 0])
+        translate([0, 0, -0.7]) { 
+            prism(0.5,TAIL_WIDTH*2,0.8);
+        }
     }
 }
 // translate([PR_OFFSET_Y-THICKNESS+ROD_R, +ROD_R+THICKNESS-TAIL_WIDTH, ROD_R+(ROD_R+THICKNESS/2)+THICKNESS])
