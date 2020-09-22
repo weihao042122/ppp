@@ -30,3 +30,6 @@ use <pp_head.scad>
 
 
 half_head();
+mirror([1, 0, 0]) {
+    half_head();
+}
