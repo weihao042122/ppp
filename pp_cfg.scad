@@ -11,7 +11,7 @@ NUT_R = 1.8 * 0.95 / 2;    //螺母
 
 cup_high = 16.4;
 cup_r = 6.8/2;
-cup_thickness=1;
+cup_thickness=1.2;
 hole_r = 0.35;
 
 rod_high = ROD_H;
