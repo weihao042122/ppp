@@ -42,5 +42,13 @@ if (1) {
             translate([0, 0, 1.5]) Lib2();
             translate([-2*ROD_R-THICKNESS/4, 0, 0]) cylinder(r=SCREW_R, h=10, $fn=200, center=true);
         }
-    }  
+    }
+
+    //head
+    translate([0, -25-cup_high-fixingRod_high+cup_high+rod_high, 0]){
+        half_head();
+        mirror([1, 0, 0]) {
+            half_head();
+        }
+    }
 }
