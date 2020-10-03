@@ -5,10 +5,10 @@ module power_rod() {
     difference() {
             cylinder(r=cup_r+cup_thickness, h=cup_high, $fn=200);
             cylinder(r=cup_r, h=cup_high-cup_thickness, $fn=200);
-            translate([rod_r+hole_r*2, 0, 0]) {
+            translate([rod_r+hole_r*1.3, 0, 0]) {
                 cylinder(r=hole_r, h=cup_high, $fn=200);
             }
-            translate([-rod_r-hole_r*2, 0, 0]) {
+            translate([-rod_r-hole_r*1.3, 0, 0]) {
                 cylinder(r=hole_r, h=cup_high, $fn=200);
             }
     }
@@ -21,11 +21,11 @@ module power_rod() {
         difference(){
             cylinder(r=fixingRod_r, h=fixingRod_high, $fn=200);
             translate([0, 0, fixingRod_high]) {
-                cylinder(r=nut_r, h=nut_high, $fn=200);
+                cylinder(r=NUT_R2, h=nut_high, $fn=200);
             }
         }
         //Foolproof
-        translate([-fixingRod_r-0.6, 0, 0]) {
+        translate([-fixingRod_r-fp_size_l+0.2, 0, 0]) {
             cube([fp_size_l, fp_size_w, fp_size_h]);
         }
     }

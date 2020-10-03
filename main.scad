@@ -30,7 +30,7 @@ if (1) {
 
     //tail
     tail();
-
+if (0) {
     //LIB left
     translate([PR_OFFSET_Y, -TAIL_WIDTH-TAIL_WIDTH/2-SPACE, ROD_R+(ROD_R+THICKNESS/2)]) difference(){
         translate([0, 0, 1.5]) Lib2();
@@ -51,4 +51,6 @@ if (1) {
             half_head();
         }
     }
+
+}
 }

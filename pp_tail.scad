@@ -22,8 +22,8 @@ module Lib2() {
     difference() {
         translate([-(ROD_R*2+THICKNESS)*1.01, -TAIL_WIDTH/2, THICKNESS/2 ])
             cube(size=[ROD_R*2+THICKNESS+ROD_R, TAIL_WIDTH, (ROD_R)]);
-        translate([-(ROD_R*2+THICKNESS)*1.02, -TAIL_WIDTH/2*1.01, 0])
-            cube(size=[ROD_R+THICKNESS*1.05, TAIL_WIDTH*1.02, (ROD_R*2+THICKNESS)*2/5]);
+        translate([-(ROD_R*2+THICKNESS)*1.02, -TAIL_WIDTH/2*1.01, THICKNESS/2])
+            cube(size=[ROD_R+THICKNESS*1.05, TAIL_WIDTH*1.02, 0.4]);
         rotate([90, 0, 0]) translate([0, 0, -TAIL_WIDTH]) Groove_hole(ROD_R*1.001, THICKNESS, 0);
     }
 }
@@ -38,9 +38,9 @@ module half_tail() {
             };
 
             //tail_wind
-            translate([0, 0, -(ROD_R+(ROD_R+THICKNESS))]) {
+            translate([0, 0, -((2*ROD_R+1.5*ROD_R+THICKNESS))]) {
                 zRotate = atan2(SPACE+TAIL_WIDTH, PR_OFFSET_Y-THICKNESS);
-                yRotate = atan2(ROD_R+THICKNESS, PR_OFFSET_Y-THICKNESS-ROD_R);
+                yRotate = atan2(1.2*ROD_R+ROD_R+THICKNESS, PR_OFFSET_Y-THICKNESS-ROD_R);
                 rotate([0, -yRotate, -zRotate]) {
                     cube(size=[PR_OFFSET_Y-THICKNESS*0.3, TAIL_WIDTH, THICKNESS]);
                 }
@@ -54,29 +54,31 @@ module half_tail() {
             Lib2();
 
         // nut hole
-        translate([PR_OFFSET_Y-2*ROD_R-THICKNESS/4, -TAIL_WIDTH-TAIL_WIDTH/2-SPACE, ROD_R+(ROD_R+THICKNESS)+1.8/2]) cylinder(r=NUT_R, h=1.8, $fn=200, center=true);
+        #translate([PR_OFFSET_Y-2*ROD_R-THICKNESS/4, -TAIL_WIDTH-TAIL_WIDTH/2-SPACE, ROD_R+(ROD_R+THICKNESS)-0.7]) cylinder(r=NUT_R, h=NUT_H*1.2, $fn=200, center=true);
     }
 
     //mid
-    difference(){
-        translate([0, -TAIL_WIDTH, -0.6]){
-            cube(size=[TAIL_WIDTH*0.6, TAIL_WIDTH, THICKNESS+0.6]);
-            translate([0.15, TAIL_WIDTH, 0])
-            cube(size=[TAIL_WIDTH*0.6, TAIL_WIDTH*2, 0.6-0.3]);
-        }
+    translate([0, 0, -1.5*ROD_R]) {
+        difference(){
+            translate([0, -TAIL_WIDTH, -0.6]){
+                cube(size=[TAIL_WIDTH*0.6, TAIL_WIDTH, THICKNESS+0.6]);
+                translate([0.1, TAIL_WIDTH, 0])
+                cube(size=[TAIL_WIDTH*0.6, TAIL_WIDTH*2, 1.2]);
+            }
 
-        rotate([180, 180, 0])
-        translate([-0.15-TAIL_WIDTH*0.6, -TAIL_WIDTH*2, -0.6-0.1]) { 
-            prism(1.2,2*TAIL_WIDTH,0.6);
-        }
-        rotate([180, 0, 0])
-        translate([0, -TAIL_WIDTH*2, 0]) { 
-            prism(1.2,3.5,0.8);
-        }
+            rotate([180, 180, 0])
+            translate([-0.15-TAIL_WIDTH*0.6, -TAIL_WIDTH*2, -0.6-0.1]) { 
+                prism(1.2,2*TAIL_WIDTH,1.4);
+            }
+            rotate([180, 0, 0])
+            translate([0, -TAIL_WIDTH*2, -0.7]) { 
+                prism(1.2,3.5,1.4);
+            }
 
-        rotate([0, 0, 0])
-        translate([0, 0, -0.7]) { 
-            prism(0.5,TAIL_WIDTH*1.8,1);
+            rotate([0, 0, 0])
+            translate([0, 0, -0.6-0.1]) { 
+                prism(0.3,TAIL_WIDTH*1.8,1.4);
+            }
         }
     }
 }

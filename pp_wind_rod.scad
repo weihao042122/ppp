@@ -3,8 +3,8 @@ include <pp_cfg.scad>
 module half_ring(){
     difference(){    //ring
         cylinder(r=ROD_R+THICKNESS*0.8, h=THICKNESS, $fn=200, center=true);
-        cylinder(r=ROD_R+ROD_R*0.1, h=THICKNESS, $fn=200, center=true);
-        translate([-0.7, ROD_R*1.3, 0]) {
+        cylinder(r=ROD_R*1.05, h=THICKNESS, $fn=200, center=true);
+        translate([-1.5, ROD_R*1.4, 0]) {
             cube(size=[(ROD_R+THICKNESS)*1.7, ROD_R+THICKNESS, ROD_R+THICKNESS], center=true);
         }
     }

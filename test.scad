@@ -6,6 +6,9 @@ include <pp_cfg.scad>
 use <pp_head.scad>
 
 
+// power_rod();
+
+
 // translate([PR_OFFSET_Y-THICKNESS+ROD_R, +ROD_R+THICKNESS-TAIL_WIDTH, ROD_R+(ROD_R+THICKNESS/2)+THICKNESS])
 //     Lib2();
 
@@ -21,15 +24,16 @@ use <pp_head.scad>
 //     translate([-2*ROD_R-THICKNESS/5, 0, 0]) cylinder(r=SCREW_R, h=10, $fn=200, center=true);
 // }
 
-// half_tail();
 // //LIB
 // translate([PR_OFFSET_Y, -TAIL_WIDTH-TAIL_WIDTH/2-SPACE, ROD_R+(ROD_R+THICKNESS/2)]) difference(){
 //     translate([0, 0, 1]) Lib2();
 //     translate([-2*ROD_R-THICKNESS/4, 0, 0]) cylinder(r=SCREW_R, h=10, $fn=200, center=true);
 // }
+// tail();
 
 
 half_head();
 mirror([1, 0, 0]) {
     half_head();
 }
+
