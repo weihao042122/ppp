@@ -106,3 +106,10 @@ module half_head() {
         
     }
 }
+
+module head(){
+    half_head();
+    mirror([1, 0, 0]) {
+        half_head();
+    }
+}

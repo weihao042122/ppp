@@ -1,12 +1,28 @@
 include <pp_cfg.scad>
 
 // use <pp_power_rod.scad>
-use <pp_wind_rod.scad>
+// use <pp_wind_rod.scad>
 // use <pp_tail.scad>
-use <pp_head.scad>
+// use <pp_head.scad>
 use <pp_bottom.scad>
 
-// power_rod();
+// power_rod();    //x2
+
+// wind_rod();
+
+// tail();
+
+//LIB  //x2
+// difference(){
+//     translate([0, 0, 1.5]) Lib2();
+//     translate([-2*ROD_R-THICKNESS/4, 0, 0]) cylinder(r=SCREW_R, h=10, $fn=200, center=true);
+// }
+
+// head();
+
+// bottom();
+
+Gasket1() ;   // x6
 
 
 // translate([PR_OFFSET_Y-THICKNESS+ROD_R, +ROD_R+THICKNESS-TAIL_WIDTH, ROD_R+(ROD_R+THICKNESS/2)+THICKNESS])
@@ -32,19 +48,14 @@ use <pp_bottom.scad>
 // tail();
 
 
-half_head();
-mirror([1, 0, 0]) {
-    half_head();
-}
-
-// translate([0, -8, ROD_R]) {
-//     rotate([90, 0, 90]) {
-//         wind_rod();
-//     }
+// half_head();
+// mirror([1, 0, 0]) {
+//     half_head();
 // }
 
-bottom();
 
-// translate([15, -29.6, 0]) {
-//     ble8253();
-// }
+// bottom();
+
+
+// Gasket1() ;   // x6
+

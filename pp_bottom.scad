@@ -24,6 +24,8 @@ module half_bottom(){
                 translate([NUT_R*0.5, fixingRod_high+HEAD_OUT_HEAD-NUT_R*5+NUT_R*1.5, -5]) cylinder(r=SCREW_R, h=10, $fn=200);
             }
         }
+
+        translate([0, 0-3, 2.5]) cube(size=[0.5, 7, 5]);
     }
 }
 
@@ -90,7 +92,7 @@ module bottom(){
             }
         }
 
-        #translate([13.1, -2.5, (ROD_R*2-0.5)-2]) {
+        translate([13.1, -2.5, (ROD_R*2-0.5)-2]) {
             rotate([0, 0, 90]) {
                 ble8253_pa();   
             }

@@ -55,4 +55,5 @@ if (1) {
 
     #translate([0, -25-cup_high-fixingRod_high+cup_high+rod_high, -ROD_R]) bottom();
 
+    // Gasket1();  // x6;
 }
