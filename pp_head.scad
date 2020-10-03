@@ -18,7 +18,7 @@ module head_cup() {
 
 module half_head() {
     // translate([-PR_OFFSET_Y, -25-cup_high-fixingRod_high+cup_high+rod_high, ROD_R+(ROD_R+THICKNESS*0.5)]) {
-    translate([-PR_OFFSET_Y, 0, ROD_R+(ROD_R+THICKNESS*0.5)]) {
+    translate([-PR_OFFSET_Y, 0, (ROD_R+2*ROD_R+THICKNESS/2)]) {
         difference(){
             translate([0, 0, 0]) {
                 rotate([-90, 0, 0]) head_cup();

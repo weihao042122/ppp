@@ -1,10 +1,10 @@
 include <pp_cfg.scad>
 
 // use <pp_power_rod.scad>
-// use <pp_wind_rod.scad>
+use <pp_wind_rod.scad>
 // use <pp_tail.scad>
 use <pp_head.scad>
-
+use <pp_bottom.scad>
 
 // power_rod();
 
@@ -37,3 +37,14 @@ mirror([1, 0, 0]) {
     half_head();
 }
 
+// translate([0, -8, ROD_R]) {
+//     rotate([90, 0, 90]) {
+//         wind_rod();
+//     }
+// }
+
+bottom();
+
+// translate([15, -29.6, 0]) {
+//     ble8253();
+// }

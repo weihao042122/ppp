@@ -54,7 +54,7 @@ module half_tail() {
             Lib2();
 
         // nut hole
-        #translate([PR_OFFSET_Y-2*ROD_R-THICKNESS/4, -TAIL_WIDTH-TAIL_WIDTH/2-SPACE, ROD_R+(ROD_R+THICKNESS)-0.7]) cylinder(r=NUT_R, h=NUT_H*1.2, $fn=200, center=true);
+        translate([PR_OFFSET_Y-2*ROD_R-THICKNESS/4, -TAIL_WIDTH-TAIL_WIDTH/2-SPACE, ROD_R+(ROD_R+THICKNESS)-0.7]) cylinder(r=NUT_R, h=NUT_H*1.2, $fn=200, center=true);
     }
 
     //mid

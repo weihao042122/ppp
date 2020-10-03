@@ -4,6 +4,7 @@ use <pp_power_rod.scad>
 use <pp_wind_rod.scad>
 use <pp_tail.scad>
 use <pp_head.scad>
+use <pp_bottom.scad>
 
 
 if (1) {
@@ -22,7 +23,7 @@ if (1) {
     }
 
     //wind rod
-    translate([0, ROD_H-25-fixingRod_high-5, 0]) {
+    translate([0, ROD_H-25-fixingRod_high-8, 0]) {
         rotate([90, 0, 90]) {
             wind_rod();
         }
@@ -30,7 +31,7 @@ if (1) {
 
     //tail
     tail();
-if (0) {
+
     //LIB left
     translate([PR_OFFSET_Y, -TAIL_WIDTH-TAIL_WIDTH/2-SPACE, ROD_R+(ROD_R+THICKNESS/2)]) difference(){
         translate([0, 0, 1.5]) Lib2();
@@ -45,12 +46,13 @@ if (0) {
     }
 
     //head
-    translate([0, -25-cup_high-fixingRod_high+cup_high+rod_high, 0]){
+    translate([0, -25-cup_high-fixingRod_high+cup_high+rod_high, -ROD_R]){
         half_head();
         mirror([1, 0, 0]) {
             half_head();
         }
     }
 
-}
+    #translate([0, -25-cup_high-fixingRod_high+cup_high+rod_high, -ROD_R]) bottom();
+
 }
