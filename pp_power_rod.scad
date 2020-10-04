@@ -30,3 +30,11 @@ module power_rod() {
         }
     }
 }
+
+module power_rod_all() {
+    power_rod();
+    translate([4, -0.4, 2]) {
+        cube(size=[22, 1, 4]);
+    }
+    translate([30, 0, 0]) mirror([1, 0, 0])power_rod();
+}

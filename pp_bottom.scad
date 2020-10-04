@@ -1,4 +1,5 @@
 include <pp_cfg.scad>
+use <pp_tail.scad>
 
 
 module half_bottom(){
@@ -133,5 +134,54 @@ module Gasket2() {
     difference() {
         cylinder(r=2.3, h=0.8, $fn=200);
         cylinder(r=SCREW_R, h=1, $fn=200);
+    }
+}
+
+module misc_all() {
+    module gasket_x2() {
+        Gasket1();
+        translate([2.2, -0.4, 0]) cube(size=[1, 0.8, 0.6]);
+        translate([2.2+2.2+0.6, 0, 0]) Gasket1();
+    }
+    
+    gasket_x2();
+
+    //
+    translate([0, 2.3*2+0.6, 0]) {
+        gasket_x2();
+    }
+    translate([-0.4, 2.2, 0]) {
+        cube(size=[0.8, 1, 0.6]);
+    }
+    //
+    translate([0, (2.3*2+0.6)*2, 0]) {
+        gasket_x2();
+    }
+    translate([-0.4, (2.2)+(2.3*2+0.6), 0]) {
+        cube(size=[0.8, 1, 0.6]);
+    }
+
+
+    //LIB  //x2
+    translate([0, -4.5, -3.2]) {
+        rotate([0, 0, 90]) difference(){
+            translate([0, 0, 1.5]) Lib2();
+            translate([-2*ROD_R-THICKNESS/4, 0, 0]) cylinder(r=SCREW_R, h=10, $fn=200, center=true);
+        }        
+    }
+    translate([-0.4, -2.3-1, 0]) {
+        cube(size=[0.8, 2, 0.6]);
+    }
+
+    //LIB  //x2
+    translate([0, 4.5+(2.3*2+0.6)*2, -3.2]) {
+        rotate([0, 0, -90]) difference(){
+            translate([0, 0, 1.5]) Lib2();
+            translate([-2*ROD_R-THICKNESS/4, 0, 0]) cylinder(r=SCREW_R, h=10, $fn=200, center=true);
+        }        
+    }
+
+    translate([-0.4, 2.2+(2.3*2+0.6)*2, 0]) {
+        cube(size=[0.8, 2, 0.6]);
     }
 }

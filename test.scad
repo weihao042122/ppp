@@ -1,10 +1,10 @@
 include <pp_cfg.scad>
 
-// use <pp_power_rod.scad>
+use <pp_power_rod.scad>
 // use <pp_wind_rod.scad>
 // use <pp_tail.scad>
 // use <pp_head.scad>
-use <pp_bottom.scad>
+// use <pp_bottom.scad>
 
 // power_rod();    //x2
 
@@ -22,7 +22,9 @@ use <pp_bottom.scad>
 
 // bottom();
 
-Gasket1() ;   // x6
+// Gasket1() ;   // x6
+
+
 
 
 // translate([PR_OFFSET_Y-THICKNESS+ROD_R, +ROD_R+THICKNESS-TAIL_WIDTH, ROD_R+(ROD_R+THICKNESS/2)+THICKNESS])
@@ -57,5 +59,6 @@ Gasket1() ;   // x6
 // bottom();
 
 
-// Gasket1() ;   // x6
+// misc_all();
 
+power_rod_all();
