@@ -5,15 +5,15 @@ THICKNESS = 2.3;
 PR_OFFSET_Y = 37.5;  //power rod offset of y axis
 
 TAIL_WIDTH = 5;
-SCREW_R = 1.2/2;
+SCREW_R = 1.2*1.05/2;
 NUT_H = 2.1;             //螺母
-NUT_R = 1.8 * 0.97 / 2;    //螺母
+NUT_R = 1.8 * 0.95 / 2;    //螺母
 
 NUT_H2 = 3;             //螺母
 NUT_R2 = 2 * 0.99 / 2;    //螺母
 
 cup_high = 16.4;
-cup_r = 7/2;
+cup_r = (7+0.8)/2;
 cup_thickness=1.2;
 hole_r = 0.7;
 

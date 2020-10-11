@@ -101,7 +101,8 @@ module half_head() {
                     translate([0, fixingRod_high+0.5, -1+HEAD_CR_THICKNESS-HEAD_WALL_H]) cube([THICKNESS, 1.5, HEAD_WALL_H]);
                 }
             }
-            rotate([-90, 0, 0]) cylinder(r=fixingRod_r*1.01, h=fixingRod_high, $fn=200);
+            //head cup hole
+            rotate([-90, 0, 0]) cylinder(r=fixingRod_r+0.8, h=fixingRod_high, $fn=200);
         }
         
     }

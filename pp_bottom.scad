@@ -30,13 +30,13 @@ module half_bottom(){
     }
 }
 
-module mpu6050(){
-    MPU6050_X = 20.8;
-    MPU6050_Y = 15.8;
+    MPU6050_X = 21;
+    MPU6050_Y = 16;
     MPU6050_Z = 1.4;
     MPU6050_Z1 = 3.2;
     MPU6050_H_OFFSET = 1;  //hold offset
-    MPU6050_HOLD_ROD = 3.2/2;
+    MPU6050_HOLD_ROD = 2.9/2;
+module mpu6050(){
     difference(){
         translate([0, 0, 0]) {
             cube(size=[MPU6050_X, MPU6050_Y, MPU6050_Z]);
@@ -54,14 +54,13 @@ module mpu6050(){
     }
 }
 
+    BLE_PA_X = 12;
+    BLE_PA_Y = 27;
+    BLE_PA_Z = 1.8;
+    BLE_PA_X1 = 14;
+    BLE_PA_Y1 = 15.8;
+    BLE_PA_Z1 = 1.8;
 module ble8253_pa(){
-    BLE_PA_X = 11.6;
-    BLE_PA_Y = 26.2;
-    BLE_PA_Z = 2;
-    BLE_PA_X1 = 13.4;
-    BLE_PA_Y1 = 15.2;
-    BLE_PA_Z1 = 2;
-
     cube(size=[BLE_PA_X, BLE_PA_Y, BLE_PA_Z]);
     cube(size=[BLE_PA_X1, BLE_PA_Y1, BLE_PA_Z]);
     translate([5, 3, 0]) {
@@ -93,7 +92,7 @@ module bottom(){
             }
         }
 
-        translate([13.1, -2.5, (ROD_R*2-0.5)-2]) {
+        translate([13.1, -2.5, (ROD_R*2-0.5)-BLE_PA_Z+0.1]) {
             rotate([0, 0, 90]) {
                 ble8253_pa();   
             }
@@ -113,10 +112,10 @@ module bottom(){
         }
         translate([-10.4, fixingRod_high+6-15, 1.2]){
             mpu6050();
-            translate([1+3.2/2, 1+3.2/2, 1.4-NUT_H]) {
+            translate([1+MPU6050_HOLD_ROD, 1+MPU6050_HOLD_ROD, 1.4-NUT_H]) {
                 cylinder(r=NUT_R, h=NUT_H, $fn=200);                
             }
-            translate([20.8-(1+3.2/2), 1+3.2/2, 1.4-NUT_H]) {
+            translate([MPU6050_X-(1+MPU6050_HOLD_ROD), 1+MPU6050_HOLD_ROD, 1.4-NUT_H]) {
                 cylinder(r=NUT_R, h=NUT_H, $fn=200);
             }
         }

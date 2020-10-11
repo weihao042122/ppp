@@ -1,10 +1,10 @@
 include <pp_cfg.scad>
 
-use <pp_power_rod.scad>
+// use <pp_power_rod.scad>
 // use <pp_wind_rod.scad>
 // use <pp_tail.scad>
 // use <pp_head.scad>
-// use <pp_bottom.scad>
+use <pp_bottom.scad>
 
 // power_rod();    //x2
 
@@ -56,9 +56,9 @@ use <pp_power_rod.scad>
 // }
 
 
-// bottom();
+bottom();
 
 
 // misc_all();
 
-power_rod_all();
+// power_rod_all();
